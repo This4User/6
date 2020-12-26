@@ -35,12 +35,12 @@ router.delete('/:id',(req, res) => {
 
 router.put('/:id',(req, res) => {
     const {id} = req.params;
-    const { firstName, lastName, age} = req.body;
-    const user = users.find((user) => user.id === id);
-
-    if(firstName) user.firstName = firstName;
-    if(lastName) user.lastName = lastName;
-    if(age) user.age = age;
+    const user = req.body;
+    users.forEach(() => {
+            if (user.id === id){
+               users[id] = user;
+            }
+    })
 
     res.send(`User with the ${id} has been updated`);
 });
